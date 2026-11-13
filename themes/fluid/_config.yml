@@ -371,6 +371,7 @@ navbar:
     - { key: "archive", link: "/archives/", icon: "iconfont icon-archive-fill" }
     - { key: "category", link: "/categories/", icon: "iconfont icon-category-fill" }
     - { key: "tag", link: "/tags/", icon: "iconfont icon-tags-fill" }
+    - { key: "P4sim", link: "/p4sim/", icon: "iconfont icon-github-fill" }
     - { key: "红楼梦脂批本", link: "/Hong-Lou-Meng/", icon: "iconfont icon-tags-fill" }
     - { key: "吴氏石头记", link: "/Wu-Shi-Shi-Tou-Ji/", icon: "iconfont icon-tags-fill" }
     - { key: "about", link: "/about/", icon: "iconfont icon-user-fill" }
