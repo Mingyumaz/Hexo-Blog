@@ -135,6 +135,7 @@ strong { font-weight: 650; }
 .topnav { display: flex; gap: 4px; margin-left: 8px; }
 .topnav a { color: var(--muted); font-size: 0.93rem; padding: 6px 10px; border-radius: 8px; }
 .topnav a:hover { color: var(--text); background: var(--surface-2); text-decoration: none; }
+.topnav a[aria-current="page"] { color: var(--accent); background: var(--accent-soft); }
 .topbar-actions { margin-left: auto; display: flex; gap: 6px; }
 .icon-btn {
   display: inline-grid; place-items: center; width: 38px; height: 38px;
@@ -386,11 +387,81 @@ td code, th code { white-space: nowrap; }
 .paper-links { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
 .bib-head { font: 600 0.78rem/1 var(--font-mono); color: var(--muted); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.06em; }
 .code-bib { font-size: 0.8rem; }
+.section-alt .paper { background: var(--bg); box-shadow: none; }
 
 /* ---------- people ---------- */
 .people { display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; align-items: center; }
 @media (max-width: 900px) { .people { grid-template-columns: 1fr; gap: 24px; } }
 .contribute { padding-bottom: 20px; }
+
+/* ---------- roadmap teaser (overview page) ---------- */
+.road-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 24px; }
+@media (max-width: 960px) { .road-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .road-grid { grid-template-columns: 1fr; } }
+.road {
+  display: flex; flex-direction: column; gap: 8px; min-width: 0;
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 16px 18px; color: var(--text); box-shadow: var(--shadow);
+  transition: border-color 0.15s, transform 0.15s;
+}
+.road:hover { text-decoration: none; border-color: var(--accent); transform: translateY(-2px); }
+@media (prefers-reduced-motion: reduce) { .road { transition: none; } .road:hover { transform: none; } }
+.road-ver { font: 750 1.3rem/1 var(--font-mono); letter-spacing: -0.02em; }
+.road-title { font-weight: 650; }
+.road-desc { color: var(--muted); font-size: 0.92rem; line-height: 1.5; }
+.road .status { align-self: flex-start; }
+
+/* ---------- roadmap page ---------- */
+.hero-sm { padding: 56px 0 44px; }
+.hero > .wrap { position: relative; z-index: 1; }
+.narrow { max-width: 880px; }
+.section-tight { padding-top: 48px; }
+.legend { list-style: none; padding: 0; margin: 20px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.status {
+  display: inline-flex; align-items: center; gap: 7px;
+  font: 600 0.74rem/1 var(--font-mono); border-radius: 999px; padding: 5px 10px; white-space: nowrap;
+}
+.status::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.st-done { color: var(--accent); background: var(--accent-soft); }
+.st-progress { color: var(--amber); background: var(--amber-soft); }
+.st-planned { color: var(--violet); background: var(--violet-soft); }
+.st-ideas { color: var(--muted); background: var(--surface-2); }
+
+.timeline { list-style: none; margin: 0; padding: 0; position: relative; }
+.timeline::before {
+  content: ""; position: absolute; left: 19px; top: 24px; bottom: 24px; width: 2px;
+  background: linear-gradient(var(--accent), var(--amber) 35%, var(--violet) 70%, var(--border));
+}
+.release { position: relative; padding-left: 60px; margin-bottom: 20px; }
+.release-dot {
+  position: absolute; left: 8px; top: 22px; width: 24px; height: 24px; border-radius: 50%;
+  border: 2px solid var(--border); background: var(--bg); display: grid; place-items: center;
+}
+.release-dot svg { width: 14px; height: 14px; fill: none; stroke: var(--on-accent); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.release.done .release-dot { background: var(--accent); border-color: var(--accent); }
+.release.progress .release-dot { border-color: var(--amber); background: linear-gradient(90deg, var(--amber) 50%, var(--bg) 50%); }
+.release.planned .release-dot { border-color: var(--violet); }
+.release.ideas .release-dot { border-color: var(--muted); border-style: dashed; }
+.release-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 20px 22px 6px; box-shadow: var(--shadow);
+}
+.release.ideas .release-card { border-style: dashed; box-shadow: none; }
+.release-head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+.release-ver { font: 750 1.5rem/1 var(--font-mono); letter-spacing: -0.02em; }
+.release-when { color: var(--muted); font-size: 0.88rem; }
+.release-card h2 { font-size: 1.15rem; margin: 12px 0 10px; }
+.release-card ul { margin: 0 0 14px; padding-left: 1.1em; color: var(--muted); }
+.release-card li { margin-bottom: 7px; }
+.release-card li strong { color: var(--text); }
+.release-links { font-size: 0.88rem; margin-bottom: 14px; }
+.road-cta { margin-top: 36px; padding-bottom: 20px; }
+@media (max-width: 600px) {
+  .timeline::before { left: 11px; }
+  .release { padding-left: 34px; }
+  .release-dot { left: 0; width: 24px; height: 24px; }
+  .release-card { padding: 16px 16px 4px; }
+}
 
 /* ---------- footer ---------- */
 .footer { padding: 32px 0 40px; color: var(--muted); font-size: 0.9rem; }
